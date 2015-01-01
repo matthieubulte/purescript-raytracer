@@ -221,8 +221,18 @@ PS.Prelude = (function () {
     };
 })();
 var PS = PS || {};
+PS.Math = (function () {
+    "use strict";
+    var Prelude = PS.Prelude;
+    var sqrt = Math.sqrt;;
+    return {
+        sqrt: sqrt
+    };
+})();
+var PS = PS || {};
 PS.Point = (function () {
     "use strict";
+    var Math = PS.Math;
     var Prelude = PS.Prelude;
     var point = function (x) {
         return function (y) {
@@ -232,17 +242,14 @@ PS.Point = (function () {
             };
         };
     };
-    return {
-        point: point
+    var dist = function (p1) {
+        return function (p2) {
+            return Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+        };
     };
-})();
-var PS = PS || {};
-PS.Math = (function () {
-    "use strict";
-    var Prelude = PS.Prelude;
-    var sqrt = Math.sqrt;;
     return {
-        sqrt: sqrt
+        dist: dist, 
+        point: point
     };
 })();
 var PS = PS || {};
@@ -584,7 +591,6 @@ function renderFrameBuffer(fb) {
 var PS = PS || {};
 PS.Main = (function () {
     "use strict";
-    var Math = PS.Math;
     var Point = PS.Point;
     var Color = PS.Color;
     var Data_Either = PS.Data_Either;
@@ -609,14 +615,9 @@ PS.Main = (function () {
         }
     };
     var height = 500;
-    var dist = function (p1) {
-        return function (p2) {
-            return Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
-        };
-    };
     var drawBall = function (b) {
         return function (p) {
-            return dist(b.position)(p) <= b.radius ? b.color : Color.rgb(123)(123)(123);
+            return Point.dist(b.position)(p) <= b.radius ? b.color : Color.rgb(123)(123)(123);
         };
     };
     var draw = function (frameBuffer) {
@@ -749,7 +750,6 @@ PS.Main = (function () {
     };
     return {
         adjust: adjust, 
-        dist: dist, 
         draw: draw, 
         drawBall: drawBall, 
         height: height, 

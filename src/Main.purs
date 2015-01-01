@@ -9,7 +9,6 @@ import Debug.Trace
 import DOM
 
 import Graphics.Canvas
-import Math
 import Signal
 import Signal.DOM
 
@@ -27,9 +26,6 @@ height = 500
 renderRatio :: Number
 renderRatio = 0.35
 -- END CONSTANTS
-
-dist :: Point -> Point -> Number
-dist p1 p2 = sqrt ( ((p1.x - p2.x) * (p1.x - p2.x)) + ((p1.y - p2.y) * (p1.y - p2.y)) )
 
 adjust :: Number -> Number -> Number -> Either Number Number
 adjust min max x = let z = (x - min) / (max - min)
