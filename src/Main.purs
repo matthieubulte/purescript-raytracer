@@ -25,6 +25,9 @@ height = 500
 
 renderRatio :: Number
 renderRatio = 0.35
+
+background :: Color
+background = rgb 123 123 123
 -- END CONSTANTS
 
 adjust :: Number -> Number -> Number -> Either Number Number
@@ -100,7 +103,7 @@ updateBall dt ball = let ball' = updateX ball dt
 drawBall :: BallState -> Point -> Color
 drawBall b p =if (dist b.position p) <= b.radius 
                  then b.color
-                 else rgb 123 123 123
+                 else background
 
 draw :: forall e.  FrameBuffer -> State -> Eff (canvas :: Canvas | e) Unit
 draw frameBuffer s = do

@@ -3,5 +3,5 @@
 /bower_components/
 /output/
 /node_modules/
-
+/dist/
 /errors.out
