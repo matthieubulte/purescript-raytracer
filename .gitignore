@@ -1,0 +1,7 @@
+# -*- mode: gitignore; -*-
+
+/bower_components/
+/output/
+/node_modules/
+
+/errors.out

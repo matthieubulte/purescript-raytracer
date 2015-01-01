@@ -1,0 +1,12 @@
+{
+  "name": "raytracer",
+  "version": "0.0.0",
+  "description": "In-canvas raytracer written in Purescript",
+  "scripts" : {
+    "test": "echo '' > errors.out && watch --color -n 0.5 'cat errors.out'"
+  }, 
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-purescript": "^0.6.0"
+  }
+}
