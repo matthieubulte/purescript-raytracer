@@ -10,7 +10,7 @@ import Data.Function
 import Graphics.Canvas
 
 import Color
-import Point
+import Pixel
 
 foreign import data FrameBuffer :: *
 
@@ -59,9 +59,9 @@ foreign import updateFrameBufferV """
                 fb.data[index++] =  x        & 0xff;
             }
         }    
-    }""" :: forall e. Fn3 FrameBuffer Number (Point -> Color) (Eff e Unit)
+    }""" :: forall e. Fn3 FrameBuffer Number (Pixel -> Color) (Eff e Unit)
 
-updateFrameBuffer :: forall e. FrameBuffer -> Number -> (Point -> Color) -> Eff e Unit
+updateFrameBuffer :: forall e. FrameBuffer -> Number -> (Pixel -> Color) -> Eff e Unit
 updateFrameBuffer = runFn3 updateFrameBufferV
 
 foreign import renderFrameBuffer """
